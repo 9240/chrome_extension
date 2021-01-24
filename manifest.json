@@ -3,19 +3,29 @@
     "name": "加班申请",
     "version": "1.0",
     "description": "康佳电子科技有限公司加班申请浏览器插件",
-    "browser_action": {
+    "page_action": {
         "default_icon": "icons/40.png",
         "default_title": "加班申请",
         "default_popup": "page/popup.html"
     },
     "permissions": [
-        "http://*/",
-        "bookmarks",
+        "declarativeContent",
+        "contextMenus",
         "tabs",
-        "history"
+        "notifications",
+        "webRequest",
+        "webRequestBlocking",
+        "storage",
+        "http://*/*",
+        "https://*/*"
     ],
     "background": {
-        "page": "page/background.html"
+        "scripts": [
+            "js/background.js"
+        ]
+    },
+    "omnibox": {
+        "keyword": "加班申请"
     },
     "content_scripts": [
         {
