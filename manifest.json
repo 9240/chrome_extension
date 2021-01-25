@@ -1,7 +1,7 @@
 {
-    "manifest_version": 2,
     "name": "加班申请",
     "version": "1.0",
+    "manifest_version": 2,
     "description": "康佳电子科技有限公司加班申请浏览器插件",
     "page_action": {
         "default_icon": "icons/40.png",
@@ -9,13 +9,7 @@
         "default_popup": "page/popup.html"
     },
     "permissions": [
-        "declarativeContent",
-        "contextMenus",
         "tabs",
-        "notifications",
-        "webRequest",
-        "webRequestBlocking",
-        "storage",
         "http://*/*",
         "https://*/*"
     ],
@@ -24,14 +18,11 @@
             "js/background.js"
         ]
     },
-    "omnibox": {
-        "keyword": "加班申请"
-    },
     "content_scripts": [
         {
             "matches": [
                 "https://hr.konka.com/*",
-                "https://eip.konka.com/*"
+                "https://ehr.konka.com/*"
             ],
             "js": [
                 "js/jquery.js",
