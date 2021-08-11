@@ -3,17 +3,17 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     chrome.tabs.create(
       {
         url:
-          "https://hr.konka.com/km/report/km_report_main/kmReportMain.do?method=add&fdTemplateId=1661a6e53cc31369332e95642d38c074"
+          "https://hr.konka.com/km/report/km_report_main/kmReportMain.do?method=add&fdTemplateId=1661a6e53cc31369332e95642d38c074",
       },
       function () {
         chrome.tabs.executeScript(
           {
-            code: "let timeData = " + JSON.stringify(msg.value)
+            code: "let timeData = " + JSON.stringify(msg.value),
           },
           function () {
             chrome.tabs.executeScript({
               code: `
-                jQuery(document).ready(function(){
+                window.onload = function(){
                   setTimeout(()=>{
                     for (let i = 0; i < timeData.length; i++) {
                       const item = timeData[i];
@@ -32,13 +32,24 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
                         ).click();
                       }
                     }
-                  },2000)
-                })
-              `
+                  },800)
+                }
+              `,
             });
           }
         );
       }
     );
+  }
+});
+
+chrome.tabs.onUpdated.addListener((id, info, tab) => {
+  if (
+    info.status == "complete" &&
+    tab.url.includes("https://ehr.konka.com/scripts/mgrqispi.dll")
+  ) {
+    chrome.pageAction.show(tab.id);
+  } else {
+    chrome.pageAction.hide(tab.id);
   }
 });

@@ -1,3 +1,4 @@
+import '../css/bootstrap.min.css';
 $("#submit").click(function () {
   var start = $("#startTime").val();
   var end = $("#endTime").val();

@@ -8,10 +8,14 @@
         "default_title": "加班申请",
         "default_popup": "page/popup.html"
     },
+    "options_ui": {
+        "page": "page/options.html",
+        "chrome_style": true
+    },
     "permissions": [
         "tabs",
-        "http://*/*",
-        "https://*/*"
+        "https://hr.konka.com/*",
+        "https://ehr.konka.com/*"
     ],
     "background": {
         "scripts": [
